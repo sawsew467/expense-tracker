@@ -1,0 +1,49 @@
+.history {
+    margin: 20px 0;
+    width: 100%;
+  }
+  
+  .history__tittle {
+    font-size: 18;
+    font-weight: bold;
+  }
+  
+  .history__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 240px;
+    overflow: auto;
+  }
+  
+  .history__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: #fff;
+    margin-bottom: 8px;
+    padding: 12px 8px;
+    font-size: 16px;
+    border-right: 4px solid #000;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  .history__item--income {
+    border-color: #3ebf73;
+  }
+  
+  .history__item--expense {
+    border-color: #b9322a;
+  }
+  
+  .history__value {
+    letter-spacing: 1px;
+  }
