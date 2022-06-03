@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import swal from 'sweetalert';
 import "../assets/css/Adding.css";
 
 function Adding(props) {
@@ -15,6 +16,8 @@ function Adding(props) {
   );
   const sendData = () => {
     props.parentCallback(historyList);
+    props.incomeCallback(income);
+    props.expenseCallback(expense);
   };
   const handleTittle = (e) => {
     setHistoryTittle(e.target.value);
@@ -22,29 +25,36 @@ function Adding(props) {
   const handleValue = (e) => {
     setHistoryValue(e.target.value);
   };
-  const handleSubmit = (historyList) => {
-    setHistoryList((prev) => {
-      const newHistory = [
-        {
-          name: historyTittle,
-          value: +historyValue,
-        },
-        ...prev,
-      ];
-      return newHistory;
-    });
-    historyValue > 0
-      ? setIncome(income + +historyValue)
-      : setExpense(expense - +historyValue);
-    setHistoryTittle("");
-    setHistoryValue("");
-    sendData();
+  const handleSubmit = (historyValue) => {
+    // console.log('historyValue: ', isNaN(historyValue));
+    if (historyTittle === "" || historyValue === "") {
+      swal("Please enter your information!");
+    } else if (isNaN(historyValue) === true) {
+      swal("The value must be a number!");
+    } else {
+      setHistoryList((prev) => {
+        const newHistory = [
+          {
+            name: historyTittle,
+            value: +historyValue,
+          },
+          ...prev,
+        ];
+        return newHistory;
+      });
+      historyValue > 0
+        ? setIncome(income + +historyValue)
+        : setExpense(expense - +historyValue);
+      setHistoryTittle("");
+      setHistoryValue("");
+    }
   };
   useEffect(() => {
     localStorage.setItem("historyList", JSON.stringify(historyList));
     localStorage.setItem("income", JSON.stringify(income));
     localStorage.setItem("expense", JSON.stringify(expense));
-  });
+    sendData();
+  }, [historyList]);
   // send data
   return (
     <>
@@ -75,7 +85,7 @@ function Adding(props) {
         </div>
         <button
           className="adding__submit"
-          onClick={() => handleSubmit(historyList)}
+          onClick={() => handleSubmit(historyValue)}
         >
           Add transaction
         </button>

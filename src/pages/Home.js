@@ -9,8 +9,16 @@ import "../assets/css/Adding.css";
 
 function Home() {
   const [historyList, setHistoryList] = useState([]);
+  const [income, setIncome] = useState(0);
+  const [expense, setExpense] = useState(0);
   const callbackHistory = (childData) => {
     setHistoryList(childData);
+  };
+  const callbackIncome = (childData) => {
+    setIncome(childData);
+  };
+  const callbackExpense = (childData) => {
+    setExpense(childData);
   };
   // console.log(historyList);
   return (
@@ -18,9 +26,17 @@ function Home() {
       <div className="wrapper">
         <div className="app">
           <h1 className="app__heading">Expense Tracker</h1>
-          {/* <Information></Information> */}
+          <Information
+            history={historyList}
+            income={income}
+            expense={expense}
+          ></Information>
           <History history={historyList}></History>
-          <Adding parentCallback={callbackHistory}></Adding>
+          <Adding
+            parentCallback={callbackHistory}
+            incomeCallback={callbackIncome}
+            expenseCallback={callbackExpense}
+          ></Adding>
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Home from "./pages/Home.js";
+import Login from "./pages/Login.js";
+import Register from "./pages/Register";
 import "./assets/css/reset.css"
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login></Login>}/>
         <Route path="/Home" element={<Home></Home>} />
-        <Route path="/login" element= {<Login></Login>}></Route>
+        <Route path="/login" element= {<Login></Login>} />
+        <Route path="/register" element={<Register></Register>}/>
       </Routes>
     </>
   );
